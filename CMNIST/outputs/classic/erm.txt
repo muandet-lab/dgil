@@ -1,0 +1,100 @@
+/opt/conda/lib/python3.8/site-packages/torch/nn/modules/module.py:1402: UserWarning: positional arguments and argument "destination" are deprecated. nn.Module.state_dict will not accept them in the future. Refer to https://pytorch.org/docs/master/generated/torch.nn.Module.html#torch.nn.Module.state_dict for details.
+  warnings.warn(
+
+final accuracies:
+0.0    0.1    0.2    0.3    0.4    0.5    0.6    0.7    0.8    0.9    1.0   
+0.970  0.879  0.798  0.709  0.626  0.526  0.435  0.357  0.263  0.169  0.083 
+
+best accuracies:
+0.0    0.1    0.2    0.3    0.4    0.5    0.6    0.7    0.8    0.9    1.0   
+0.970  0.879  0.798  0.709  0.626  0.526  0.435  0.357  0.263  0.169  0.083 
+/opt/conda/lib/python3.8/site-packages/torch/nn/modules/module.py:1402: UserWarning: positional arguments and argument "destination" are deprecated. nn.Module.state_dict will not accept them in the future. Refer to https://pytorch.org/docs/master/generated/torch.nn.Module.html#torch.nn.Module.state_dict for details.
+  warnings.warn(
+
+final accuracies:
+0.0    0.1    0.2    0.3    0.4    0.5    0.6    0.7    0.8    0.9    1.0   
+0.973  0.883  0.794  0.712  0.616  0.519  0.433  0.353  0.259  0.171  0.084 
+
+best accuracies:
+0.0    0.1    0.2    0.3    0.4    0.5    0.6    0.7    0.8    0.9    1.0   
+0.973  0.883  0.794  0.712  0.616  0.519  0.433  0.353  0.259  0.171  0.084 
+/opt/conda/lib/python3.8/site-packages/torch/nn/modules/module.py:1402: UserWarning: positional arguments and argument "destination" are deprecated. nn.Module.state_dict will not accept them in the future. Refer to https://pytorch.org/docs/master/generated/torch.nn.Module.html#torch.nn.Module.state_dict for details.
+  warnings.warn(
+
+final accuracies:
+0.0    0.1    0.2    0.3    0.4    0.5    0.6    0.7    0.8    0.9    1.0   
+0.972  0.882  0.794  0.707  0.622  0.526  0.447  0.352  0.266  0.184  0.083 
+
+best accuracies:
+0.0    0.1    0.2    0.3    0.4    0.5    0.6    0.7    0.8    0.9    1.0   
+0.972  0.882  0.794  0.707  0.622  0.526  0.447  0.352  0.266  0.184  0.083 
+/opt/conda/lib/python3.8/site-packages/torch/nn/modules/module.py:1402: UserWarning: positional arguments and argument "destination" are deprecated. nn.Module.state_dict will not accept them in the future. Refer to https://pytorch.org/docs/master/generated/torch.nn.Module.html#torch.nn.Module.state_dict for details.
+  warnings.warn(
+
+final accuracies:
+0.0    0.1    0.2    0.3    0.4    0.5    0.6    0.7    0.8    0.9    1.0   
+0.975  0.885  0.795  0.718  0.612  0.521  0.428  0.344  0.259  0.161  0.074 
+
+best accuracies:
+0.0    0.1    0.2    0.3    0.4    0.5    0.6    0.7    0.8    0.9    1.0   
+0.975  0.885  0.795  0.718  0.612  0.521  0.428  0.344  0.259  0.161  0.074 
+/opt/conda/lib/python3.8/site-packages/torch/nn/modules/module.py:1402: UserWarning: positional arguments and argument "destination" are deprecated. nn.Module.state_dict will not accept them in the future. Refer to https://pytorch.org/docs/master/generated/torch.nn.Module.html#torch.nn.Module.state_dict for details.
+  warnings.warn(
+
+final accuracies:
+0.0    0.1    0.2    0.3    0.4    0.5    0.6    0.7    0.8    0.9    1.0   
+0.971  0.889  0.792  0.707  0.609  0.530  0.442  0.349  0.260  0.165  0.081 
+
+best accuracies:
+0.0    0.1    0.2    0.3    0.4    0.5    0.6    0.7    0.8    0.9    1.0   
+0.971  0.889  0.792  0.707  0.609  0.530  0.442  0.349  0.260  0.165  0.081 
+/opt/conda/lib/python3.8/site-packages/torch/nn/modules/module.py:1402: UserWarning: positional arguments and argument "destination" are deprecated. nn.Module.state_dict will not accept them in the future. Refer to https://pytorch.org/docs/master/generated/torch.nn.Module.html#torch.nn.Module.state_dict for details.
+  warnings.warn(
+
+final accuracies:
+0.0    0.1    0.2    0.3    0.4    0.5    0.6    0.7    0.8    0.9    1.0   
+0.975  0.885  0.789  0.708  0.612  0.526  0.431  0.356  0.254  0.161  0.074 
+
+best accuracies:
+0.0    0.1    0.2    0.3    0.4    0.5    0.6    0.7    0.8    0.9    1.0   
+0.975  0.885  0.789  0.708  0.612  0.526  0.431  0.356  0.254  0.161  0.074 
+/opt/conda/lib/python3.8/site-packages/torch/nn/modules/module.py:1402: UserWarning: positional arguments and argument "destination" are deprecated. nn.Module.state_dict will not accept them in the future. Refer to https://pytorch.org/docs/master/generated/torch.nn.Module.html#torch.nn.Module.state_dict for details.
+  warnings.warn(
+
+final accuracies:
+0.0    0.1    0.2    0.3    0.4    0.5    0.6    0.7    0.8    0.9    1.0   
+0.975  0.887  0.797  0.704  0.616  0.526  0.436  0.354  0.257  0.158  0.072 
+
+best accuracies:
+0.0    0.1    0.2    0.3    0.4    0.5    0.6    0.7    0.8    0.9    1.0   
+0.975  0.887  0.797  0.704  0.616  0.526  0.436  0.354  0.257  0.158  0.072 
+/opt/conda/lib/python3.8/site-packages/torch/nn/modules/module.py:1402: UserWarning: positional arguments and argument "destination" are deprecated. nn.Module.state_dict will not accept them in the future. Refer to https://pytorch.org/docs/master/generated/torch.nn.Module.html#torch.nn.Module.state_dict for details.
+  warnings.warn(
+
+final accuracies:
+0.0    0.1    0.2    0.3    0.4    0.5    0.6    0.7    0.8    0.9    1.0   
+0.978  0.887  0.792  0.706  0.607  0.516  0.437  0.343  0.251  0.159  0.067 
+
+best accuracies:
+0.0    0.1    0.2    0.3    0.4    0.5    0.6    0.7    0.8    0.9    1.0   
+0.978  0.887  0.792  0.706  0.607  0.516  0.437  0.343  0.251  0.159  0.067 
+/opt/conda/lib/python3.8/site-packages/torch/nn/modules/module.py:1402: UserWarning: positional arguments and argument "destination" are deprecated. nn.Module.state_dict will not accept them in the future. Refer to https://pytorch.org/docs/master/generated/torch.nn.Module.html#torch.nn.Module.state_dict for details.
+  warnings.warn(
+
+final accuracies:
+0.0    0.1    0.2    0.3    0.4    0.5    0.6    0.7    0.8    0.9    1.0   
+0.977  0.888  0.794  0.701  0.618  0.531  0.432  0.343  0.254  0.165  0.076 
+
+best accuracies:
+0.0    0.1    0.2    0.3    0.4    0.5    0.6    0.7    0.8    0.9    1.0   
+0.977  0.888  0.794  0.701  0.618  0.531  0.432  0.343  0.254  0.165  0.076 
+/opt/conda/lib/python3.8/site-packages/torch/nn/modules/module.py:1402: UserWarning: positional arguments and argument "destination" are deprecated. nn.Module.state_dict will not accept them in the future. Refer to https://pytorch.org/docs/master/generated/torch.nn.Module.html#torch.nn.Module.state_dict for details.
+  warnings.warn(
+
+final accuracies:
+0.0    0.1    0.2    0.3    0.4    0.5    0.6    0.7    0.8    0.9    1.0   
+0.973  0.882  0.791  0.701  0.616  0.535  0.440  0.350  0.258  0.175  0.081 
+
+best accuracies:
+0.0    0.1    0.2    0.3    0.4    0.5    0.6    0.7    0.8    0.9    1.0   
+0.973  0.882  0.791  0.701  0.616  0.535  0.440  0.350  0.258  0.175  0.081 
