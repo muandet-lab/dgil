@@ -20,24 +20,24 @@ from datasets import get_cmnist_datasets
 # +
 parser = argparse.ArgumentParser(description='Colored MNIST')
 # Datasets
-parser.add_argument('--train_envs', type=str, default='0.01, 0.12, 0.0, 0.0, 0.99, 0.5, 0.7, 0.01, 0.0, 0.0, 0.14')
+parser.add_argument('--train_envs', type=str, default='0.0,0.05,0.1,0.15,0.2,0.3,0.4,0.5,0.9')
 parser.add_argument('--test_envs', type=str, default='0.1,0.5,0.9')     # test envs to log/print
 parser.add_argument('--test_env_ms', type=str, default='0.9')               # test env for selecting best model
 parser.add_argument('--full_resolution', action='store_true')
 
 # Network architecture
-parser.add_argument('--network', type=str, default="MLP")
+parser.add_argument('--network', type=str, default="FiLMedMLP")
 parser.add_argument('--mlp_hidden_dim', type=int, default=390)
 
 # Algorithms
-parser.add_argument('--algorithm', type=str, default='groupdro')
+parser.add_argument('--algorithm', type=str, default='iro')
 parser.add_argument('--penalty_weight', type=float, default=1000)           # irm, vrex, etc.
-parser.add_argument('--alpha', type=float, default=0.4)                     # qrm
+parser.add_argument('--alpha', type=float, default=0.4)                  # qrm
 parser.add_argument('--groupdro_eta', type=float, default=1.)               # group_dro
 
 # General hparams
 parser.add_argument('--steps', type=int, default=600)
-parser.add_argument('--batch_size', type=int, default=25000)
+parser.add_argument('--batch_size', type=int, default=5000)
 parser.add_argument('--loss_fn', type=str, default='nll', choices=["nll, cross_ent"])
 parser.add_argument('--lr', type=float, default=1e-4)
 parser.add_argument('--lr_factor_reduction', type=float, default=1)
@@ -119,14 +119,14 @@ else:
     device = "cpu"
 
 # --------  DATA LOADING --------
-envs = get_cmnist_datasets(args.data_dir, train_envs=train_env_ps, test_envs=test_env_ps, label_noise_rate = 0.25, 
+envs = get_cmnist_datasets(args.data_dir, train_envs=train_env_ps, test_envs=test_env_ps,
                            cuda=(device == "cuda"), int_target=int_target, subsample=not args.full_resolution)
 train_envs, test_envs = envs[:len(train_env_ps)], envs[len(train_env_ps):]
 input_shape = train_envs[0].tensors[0].size()[1:]
 n_train_samples = train_envs[0].tensors[0].size()[0]
 steps_per_epoch = n_train_samples / args.batch_size
 
-train_loaders = [FastDataLoader(dataset=env, batch_size=args.batch_size, num_workers=args.n_workers)
+train_loaders = [InfiniteDataLoader(dataset=env, batch_size=args.batch_size, num_workers=args.n_workers)
                  for env in train_envs]
 test_loaders = [FastDataLoader(dataset=env, batch_size=args.batch_size, num_workers=args.n_workers)
                 for env in test_envs]
@@ -179,7 +179,7 @@ def adjust_learning_rate(optimizer, current_step, lr, total_steps):
 
 # +
 # -------- UPDATES --------
-h_alphas_train = [0.0,1.0,1.0]
+h_alphas_train = [0.1,1.0,1.0]
 results = {}
 best_acc, best_weights = 0., copy.deepcopy(algorithm.state_dict())
 start_time, step_since_eval = time.time(), 0
@@ -198,11 +198,11 @@ for step in range(start_step, args.steps + 1):
             adjust_learning_rate(algorithm.optimizer, step_, lr_, steps_)
 
     # -------- STEP --------
-    try:
-        minibatch_train = next(train_minibatches_iterator)
-    except StopIteration:
-        train_minibatches_iterator = zip(*train_loaders)
-        minibatch_train = next(train_minibatches_iterator)
+    #try:
+    minibatch_train = next(train_minibatches_iterator)
+    #except StopIteration:
+    #    train_minibatches_iterator = zip(*train_loaders)
+    #    minibatch_train = next(train_minibatches_iterator)
     step_values = algorithm.update(minibatch_train)
     # -------- EVALUATION --------
     if step % args.eval_freq == 0 or step == args.steps:
@@ -247,7 +247,7 @@ all_envs = get_cmnist_datasets(args.data_dir, train_envs=[], test_envs=all_ps, c
 loaders = [FastDataLoader(dataset=env, batch_size=5000, num_workers=args.n_workers)
            for env in all_envs]
 #since you know for ratio > 0.5 the color flips and you would be better off being invariant
-h_alphas_test = [0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]
+h_alphas_test = [0.0,0.1,0.2,0.3,1.0,1.0,1.0,1.0,1.0,1.0,1.0]
 results = {}
 for ms_name in ["final", "best"]:
     if ms_name == "best":

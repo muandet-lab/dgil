@@ -4,7 +4,7 @@ import numpy as np
 import torch.nn as nn
 import torch.optim as optim
 from torch.optim.lr_scheduler import StepLR
-from .misc import Nonparametric
+from .kde import Nonparametric
 from scipy.stats import beta
 import copy
 
