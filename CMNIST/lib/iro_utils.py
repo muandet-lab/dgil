@@ -107,7 +107,7 @@ class IcdfBetaScaler(torch.autograd.Function):
             local_grad_b = torch.tensor([(beta.ppf(x, a, b+diff) - beta.ppf(x, a, b)) / diff]).float()
         else:
             local_grad_b = torch.tensor([(beta.ppf(x, a, b+diff) - beta.ppf(x, a, b-diff)) / (2.0 * diff)]).float()
-        grad_x = grad_output * local_grad_a.to(device)
+        grad_x = grad_output * local_grad_x.to(device)
         grad_a = grad_output * local_grad_a.to(device)
         grad_b = grad_output * local_grad_b.to(device)
         return grad_x, grad_a, grad_b
@@ -117,9 +117,7 @@ class Pareto_distribution:
         self.loss_fn = loss_fn
         self.aggregator = aggregation_function(name="cvar-diff")
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        self.a = torch.tensor([0.5], requires_grad=True, device=self.device, dtype=torch.float32)
-        self.b = torch.tensor([0.5], requires_grad=True, device=self.device, dtype=torch.float32)
-        self.optimizer_dist = torch.optim.Adam([self.a, self.b], lr=1e-5)
+        self.dist_param = torch.tensor([1.0,1.0], requires_grad=True, device=self.device, dtype=torch.float32)
     
     def aggregated_objective(self, model, minibatches, num_samples=5):
         ### reparameterization needed here.
@@ -127,24 +125,25 @@ class Pareto_distribution:
         uniform_samples.requires_grad=True
         alphas = []
         for t_unif in uniform_samples:
-            alphas.append(IcdfBetaScaler.apply(t_unif, self.a, self.b))
+            alphas.append(IcdfBetaScaler.apply(t_unif, self.dist_param[0], self.dist_param[1]))
         cvar_estimates = []
         for alpha in alphas:
             risks = []
             for x, y in minibatches:
                 t_alpha = torch.tile(alpha,(x.shape[0],1))
                 risks.append(self.loss_fn(model(x,t_alpha), y).reshape(1))
-            risks = torch.cat(risks).detach()
+            risks = torch.cat(risks)
             cvar_estimates.append(self.aggregator.aggregate(risks, alpha))
         cvar_estimates = torch.stack(cvar_estimates)
         average_cvar = torch.mean(cvar_estimates)
         return average_cvar
-    
     def update(self, model, minibatches):
-        for param in model.parameters():
-            param.requires_grad = False
         avg_cvar = self.aggregated_objective(model, minibatches)
-        avg_cvar.backward()
-        self.optimizer_dist.step()
-        self.optimizer_dist.zero_grad()
-        return self.a.detach().item(), self.b.detach().item()
+        params = [p for p in model.parameters()]
+        grads = torch.autograd.grad(avg_cvar, params, retain_graph=True, create_graph=True)[0]
+        grad_norms = [torch.norm(grad, p=2) for grad in grads if grad is not None]
+        total_norm = torch.norm(torch.stack(grad_norms), p=2)
+        obj_grad = torch.autograd.grad(total_norm, self.dist_param)[0]
+        # Adjust distribution parameters based on accumulated gradients
+        self.dist_param = self.dist_param - 0.000001 * obj_grad
+        return self.dist_param.detach().cpu().numpy()

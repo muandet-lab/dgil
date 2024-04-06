@@ -26,11 +26,11 @@ parser.add_argument('--test_env_ms', type=str, default='0.9')               # te
 parser.add_argument('--full_resolution', action='store_true')
 
 # Network architecture
-parser.add_argument('--network', type=str, default="MLP")
+parser.add_argument('--network', type=str, default="FiLMedMLP")
 parser.add_argument('--mlp_hidden_dim', type=int, default=390)
 
 # Algorithms
-parser.add_argument('--algorithm', type=str, default='groupdro')
+parser.add_argument('--algorithm', type=str, default='iro')
 parser.add_argument('--penalty_weight', type=float, default=1000)           # irm, vrex, etc.
 parser.add_argument('--alpha', type=float, default=0.4)                     # qrm
 parser.add_argument('--groupdro_eta', type=float, default=1.)               # group_dro

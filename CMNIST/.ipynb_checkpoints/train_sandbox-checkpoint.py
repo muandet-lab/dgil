@@ -20,7 +20,7 @@ from datasets import get_cmnist_datasets
 # +
 parser = argparse.ArgumentParser(description='Colored MNIST')
 # Datasets
-parser.add_argument('--train_envs', type=str, default='0.0,0.0,0.1,0.3,0.5')#0.01, 0.12, 0.0, 0.0, 0.99, 0.7, 0.01, 0.0, 0.0, 0.14
+parser.add_argument('--train_envs', type=str, default='0.01, 0.12, 0.0, 0.0, 0.99, 0.5, 0.7, 0.01, 0.0, 0.0, 0.14')
 parser.add_argument('--test_envs', type=str, default='0.1,0.5,0.9')     # test envs to log/print
 parser.add_argument('--test_env_ms', type=str, default='0.9')               # test env for selecting best model
 parser.add_argument('--full_resolution', action='store_true')
@@ -32,7 +32,7 @@ parser.add_argument('--mlp_hidden_dim', type=int, default=390)
 # Algorithms
 parser.add_argument('--algorithm', type=str, default='iro')
 parser.add_argument('--penalty_weight', type=float, default=1000)           # irm, vrex, etc.
-parser.add_argument('--alpha', type=float, default=0.4)                  # qrm
+parser.add_argument('--alpha', type=float, default=0.4)                     # qrm
 parser.add_argument('--groupdro_eta', type=float, default=1.)               # group_dro
 
 # General hparams
@@ -247,7 +247,7 @@ all_envs = get_cmnist_datasets(args.data_dir, train_envs=[], test_envs=all_ps, c
 loaders = [FastDataLoader(dataset=env, batch_size=5000, num_workers=args.n_workers)
            for env in all_envs]
 #since you know for ratio > 0.5 the color flips and you would be better off being invariant
-h_alphas_test = [0.0,0.1,0.2,0.3,0.4,0.5,0.9,0.9,0.9,0.9,1.0]
+h_alphas_test = [0.0,0.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0]
 results = {}
 for ms_name in ["final", "best"]:
     if ms_name == "best":
