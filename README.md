@@ -1,7 +1,6 @@
 # Domain Generalisation via Imprecise Learning
 
-This repository contains the code base for the paper "Domain Generalization by Imprecsie Learning" accepted at ICML 2024. The paper presents a novel approach to domain generalization by contending that that domain generalisation encompasses both statistical learning and decision-making. Learners are thus compelled to make normative judgments, leading to misalignment amidst institutional separation from model operators. Leveraging imprecise probability, our proposal, Imprecise Domain Generalisation, allows learners to embrace imprecision during training and empowers model operators to make informed decisions during deployment.
-
+This repository contains the code base for the paper "Domain Generalization by Imprecsie Learning" accepted at ICML 2024. 
 ## Table of Contents
 - [Overview](#overview)
 - [Installation](#installation)
@@ -32,7 +31,7 @@ To install the necessary dependencies, please follow these steps:
     source dgil_env/bin/activate  # On Windows, use `dgil_env\Scripts\activate`
     ```
 
-3. Install the required packages:
+3. Install the required packages from file inside CMNIST folder:
     ```bash
     pip install -r requirements.txt
     ```
@@ -58,9 +57,13 @@ We welcome contributions from the community. If you encounter any issues or have
 
 ## Results 
 We performed experiment on modified version of CMNIST where we design our experimental setup as shown below
-![Overview of DGIL](assets/cmnsit_setup.png)
+
+![Overview of DGIL](assets/cmnist_setup.png)
+
 While average case learners and worst case learners perform well for majority and minority environments respectively, DGIL obtains lowest regret across environments. 
-![Lowest Regret](assets/cmnist_table.png)
+
+![Lowest Regret](assets/cmnsit_table.png)
+
 ## Citation
 If you use this code in your research, please cite our paper:
 
