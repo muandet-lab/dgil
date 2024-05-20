@@ -1,6 +1,6 @@
 # Domain Generalisation via Imprecise Learning
 
-This repository contains the code base for the paper "Domain Generalization by Imprecsie Learning" accepted at ICML 2024. 
+This repository contains the code base for the paper "Domain Generalization via Imprecsie Learning" accepted at ICML 2024. 
 ## Table of Contents
 - [Overview](#overview)
 - [Installation](#installation)
@@ -12,7 +12,7 @@ This repository contains the code base for the paper "Domain Generalization by I
 
 ## Overview
 
-The paper presents a novel approach to domain generalization by contending that that domaingeneralisation encompasses both statistical learning and decision-making. Learners are thus compelled to make normative judgments, leading to misalignment amidst institutional separation from model operators. Leveraging imprecise probability, our proposal, Imprecise Domain Generalisation, allows learners to embrace imprecision during training and empowers model operators to make informed decisions during deployment.
+The paper presents a novel approach to domain generalization by contending that domain generalisation encompasses both statistical learning and decision-making. Thus without knowledge of the model operator's notion of generalisation, learners are compelled to make normative judgments. This leads to misalignment amidst institutional separation from model operators. Leveraging imprecise probability, our proposal, Imprecise Domain Generalisation, allows learners to embrace imprecision during training and empowers model operators to make informed decisions during deployment.
 
 ![Overview of DGIL](assets/overview.png)
 
@@ -60,7 +60,7 @@ We performed experiment on modified version of CMNIST where we design our experi
 
 ![Overview of DGIL](assets/cmnist_setup.png)
 
-While average case learners and worst case learners perform well for majority and minority environments respectively, DGIL obtains lowest regret across environments. 
+While average case learners and worst case learners perform well for majority and minority environments respectively, DGIL obtains the lowest regret across environments. 
 
 ![Lowest Regret](assets/cmnsit_table.png)
 
